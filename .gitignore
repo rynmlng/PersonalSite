@@ -1,0 +1,3 @@
+*.pyc
+project/main/local_settings.py
+project_venv
