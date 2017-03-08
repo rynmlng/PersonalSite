@@ -246,6 +246,15 @@ function setupBackground(reloadPackery) {
   }
 }
 
+function loadBlogPosts() {
+    /* Load the blog section's content asynchronously. */
+    var $blog = $('#blog');
+
+    // TODO ajax queue? we want to spawn a separate, non-blocking process
+    // TODO $.ajax($blog.data('ajax-url')
+    // should have returned a list of objects w/keys 'created_date' & 'content'
+}
+
 function setupNavigation() {
   addNavigationWaypoints(); // must be first b/c of click bindings we'll add to the navigation links
   addNavigationAutoScrolling();
@@ -254,6 +263,7 @@ function setupNavigation() {
 function setupContent() {
   addContentBoxWaypoints();
   addGalleryPreview();
+  loadBlogPosts();
 }
 
 $(function() {

@@ -1,14 +1,16 @@
+import json
+
 from django.http import HttpResponse
 
-import json
+from blog.services.posts import PostService
 
 
 def ajax_posts(request):
     """ Get all blog posts ordered by created date, descending. """
-    response_payload = {}
+    post_service = PostService()
 
-    # TODO get posts and load them into response_payload
+    all_posts = post_service.get_all_posts('created_date', 'content')
 
-    json_response = json.dumps(response_payload)
+    json_response = json.dumps(all_posts)
 
     return HttpResponse(json_response, content_type='application/json')

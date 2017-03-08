@@ -6,3 +6,5 @@
 
 * mod_wsgi
   * http://modwsgi.readthedocs.io/en/develop/user-guides/quick-installation-guide.html
+
+* Create virtualenv with requirements.txt
