@@ -7,7 +7,3 @@ from main import views
 urlpatterns = (
     url(r'^$', views.index, name='index'),
 )
-
-urlpatterns += (
-    url(r'^blog/', include('blog.urls')),
-)

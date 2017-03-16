@@ -1,3 +1,4 @@
 *.pyc
+*.swp
 project/main/local_settings.py
 venv/

@@ -5,7 +5,9 @@ class PostService(object):
     """ Service that provides harnesses all business logic and interactions with blog posts. """
 
     def get_all_posts(self):
-        """ Get all blog posts, returned as an iterable DB cursor. """
+        """ Get all blog posts, returned as an iterable DB cursor.
+            When iterated over this returns a list of dictionaries with keys content, created_datetime, and _id.
+        """
         return BlogDatabase().get_collection('post').find()
 
     # TODO save blogs w/a created_date & content
@@ -16,4 +18,4 @@ class PostService(object):
         """
         post = {'created_datetime': created_datetime, 'content': content}
 
-        BlogDatabase().get_collection('post').insert_one(
+        #BlogDatabase().get_collection('post').insert_one(

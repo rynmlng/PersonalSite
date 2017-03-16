@@ -66,7 +66,7 @@ function addRandomRectangles($container) {
 function overridePackeryToCenter() {
   /* Override packery to center all items.
    * See http://packery.metafizzy.co/extras.html
-   * */
+   */
 	var __resetLayout = Packery.prototype._resetLayout;
 	Packery.prototype._resetLayout = function() {
 		__resetLayout.call( this );
@@ -155,7 +155,7 @@ function addContentBoxWaypoints() {
    *
    * - Scrolling down: when content-box is showing its top 100px, put in focus
    * - Scrolling up: when content-box is only showing top 100px, remove from focus
-   * */
+   */
   $('.content-box').each(
     function(i, contentBox) {
       var contentBoxHeight = $(contentBox).outerHeight(),
@@ -191,7 +191,7 @@ function addContentBoxWaypoints() {
 function addGalleryPreview() {
   /* Add look-and-feel of the gallery including hovering and preview movement
    * based on the mouse.
-   * */
+   */
   var $gallery = $('.gallery'),
       $previewPhoto = $gallery.children('.preview-photo');
 
@@ -229,6 +229,13 @@ function addGalleryPreview() {
   });
 }
 
+function renderMarkdown() {
+  /* Render all HTML elements with the class name 'markdown' with markdown styling. */
+  $('.markdown').each(function() {
+    $(this).html(marked($(this).text()));
+  });
+}
+
 function setupBackground(reloadPackery) {
   /* Build the body background, specifically the rectangles. */
   var $background = $('.background');
@@ -246,15 +253,6 @@ function setupBackground(reloadPackery) {
   }
 }
 
-function loadBlogPosts() {
-    /* Load the blog section's content asynchronously. */
-    var $blog = $('#blog');
-
-    // TODO ajax queue? we want to spawn a separate, non-blocking process
-    // TODO $.ajax($blog.data('ajax-url')
-    // should have returned a list of objects w/keys 'created_date' & 'content'
-}
-
 function setupNavigation() {
   addNavigationWaypoints(); // must be first b/c of click bindings we'll add to the navigation links
   addNavigationAutoScrolling();
@@ -263,7 +261,7 @@ function setupNavigation() {
 function setupContent() {
   addContentBoxWaypoints();
   addGalleryPreview();
-  loadBlogPosts();
+  renderMarkdown();
 }
 
 $(function() {

@@ -42,3 +42,4 @@ To encourage unified coding style and system file structure here are some guidel
 * [CSS flexbox guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
 * [CSS+JS Scotch tape effcet](http://codepen.io/oloman/pen/gDbmL)
 * [JS Packery](http://packery.metafizzy.co/layout.html)
+* [Redis Session Backend](http://michal.karzynski.pl/blog/2013/07/14/using-redis-as-django-session-store-and-cache-backend/)

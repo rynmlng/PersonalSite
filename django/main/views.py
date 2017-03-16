@@ -7,6 +7,6 @@ def index(request):
     """ Returns the site's main index. """
     post_service = PostService()
 
-    raise Exception,list(post_service.get_all_posts())
+    blog_posts = list(post_service.get_all_posts())
 
-    return render(request, 'index.html')
+    return render(request, 'index.html', {'blog_posts': blog_posts})
