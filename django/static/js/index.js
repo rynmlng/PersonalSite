@@ -124,7 +124,7 @@ function addNavigationWaypoints() {
   /** Add waypoints to the navigation to allow a floating navigation when
    *    the original navigation is out of the viewport.
    */
-  var FLOATING_NAVIGATION_TOP_OFFSET = 0;
+  var FLOATING_NAVIGATION_TOP_OFFSET = 20;
 
   var waypoint = new Waypoint({
     element: $('.navigation .links.static')[0],

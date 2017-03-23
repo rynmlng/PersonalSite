@@ -4,12 +4,9 @@
 }
 * {
   border: 0;
-  box-sizing: border-box;
   font-family: Lato, arial;
   margin: 0;
   padding: 0;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
 }
 a {
   text-decoration: none;
@@ -46,7 +43,7 @@ p {
 .background .rectangle .grunge {
   background-image: url(../img/grunge_filter.png);
   height: 100%;
-  opacity: 0.2;
+  opacity: 0.7;
   width: 100%;
 }
 .background .rectangle.beige {
@@ -144,7 +141,6 @@ p {
   font-size: 32px;
   padding: 10px 20px;
   text-align: left;
-  color: rgba(0, 0, 0, 0.8);
 }
 .main #header .summary .name {
   font-size: 56px;
@@ -178,6 +174,7 @@ p {
 .main #header .navigation .links.floating {
   display: none;
   position: fixed;
+  right: 5%;
   top: 0px;
   -moz-transition: color 0.2s linear;
   -ms-transition: color 0.2s linear;
@@ -187,9 +184,20 @@ p {
 }
 .main #header .navigation .links.floating .go-to-top {
   background-image: url(../img/arrowup_circle-512.png);
-  background-position-y: 16px;
   background-repeat: no-repeat;
   background-size: 26px;
+  border-radius: 13px;
+  display: inline-block;
+  height: 25px;
+  padding: 0px;
+  width: 25px;
+}
+.main #header .navigation .links.floating .go-to-top:hover {
+  background-color: #fff;
+  -moz-transition: background-color 0.4s linear;
+  -ms-transition: background-color 0.4s linear;
+  -webkit-transition: background-color 0.4s linear;
+  transition: background-color 0.4s linear;
 }
 .main #header .navigation .links.floating .link:hover {
   color: rgba(0, 0, 0, 0.95);
@@ -213,12 +221,15 @@ p {
   background-repeat: no-repeat;
   background-size: 200px;
   border-radius: 6px;
+  box-sizing: border-box;
   cursor: pointer;
   height: 100px;
   margin: 10px;
   overflow: hidden;
   padding: 10px;
   width: 100px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
 }
 .main #identity .gallery .preview-photo {
   background-color: rgba(0, 0, 0, 0.8);
@@ -233,4 +244,8 @@ p {
   position: absolute;
   top: 0px;
   width: 100%;
+}
+.main #blog .post {
+  border-bottom: 3px solid rbga(0, 0, 0, 0.3);
+  padding: 20px 0px;
 }
