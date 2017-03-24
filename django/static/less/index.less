@@ -122,12 +122,22 @@
       display: flex;
       .links {
         margin: 20px 0px 50px 20px;
+        padding: 10px 0px;
         .link {
           cursor: pointer;
           font-size: 32px;
           margin: 0px 5px;
           padding: 6px 15px;
           white-space: nowrap;
+          &.go-to-top {
+            background: none;
+            cursor: default;
+            display: inline-block;
+            height: 26px;
+            margin-left: 20px;
+            padding: 0px;
+            width: 26px;
+          }
           .color-transition;
           &:hover {
             color: rgba(255, 255, 255, 0.95);
@@ -136,34 +146,26 @@
           }
         }
         &.floating {
+          background-color: rgba(0, 0, 0, 0.7);
+          border-radius: 6px;
           display: none;
           position: fixed;
-          right: 5%;
           top: 0px;
-          .color-transition;
           .zIndexHigher;
           .go-to-top {
-            background-image: url(../img/arrowup_circle-512.png);
-            background-repeat: no-repeat;
-            background-size: 26px;
+            background: @white url(../img/arrowup_circle-512.png) no-repeat center;
+            background-size: 28px;
             border-radius: 13px;
-            display: inline-block;
-            height: 25px;
-            padding: 0px;
-            width: 25px;
+            box-shadow: 0px 0px 5px @black;
+            cursor: pointer;
             &:hover {
-              background-color: @white;
-              .background-color-transition;
+              box-shadow: 0px 0px 10px @white;
             }
           }
           .link:hover {
             color: rgba(0, 0, 0, 0.95);
             .color-transition;
           }
-        }
-        &.static .go-to-top {
-          background: none;
-          cursor: default;
         }
       }
     }

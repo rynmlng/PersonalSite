@@ -104,6 +104,9 @@ function overridePackeryToCenter() {
 }
 
 function addNavigationAutoScrolling() {
+  /* Auto-scrolling when links in the navigation are clicked.
+   *   i.e. more animated relative links
+   */
   var $links = $('.navigation .links'),
       navHeight = $links.height();
 
@@ -214,6 +217,9 @@ function setupBackground(reloadPackery) {
 function setupNavigation() {
   addNavigationWaypoints(); // must be first b/c of click bindings we'll add to the navigation links
   addNavigationAutoScrolling();
+
+  var $floatingNavigation = $('.navigation .links.floating'),
+      $staticNavigation = $('.navigation .links.static');
 }
 
 function setupContent() {
