@@ -21,6 +21,10 @@ Here is a list of outstanding tasks that need to be completed for this project..
 
 * [ ] Mobile, narrow-browser CSS
 
+* [ ] Favicon being a Monogram
+
+* [ ] Compress JS
+
 * [ ] Navigation
   * [x] Waypoint to hide/show nav
   * [x] Bookmark nav movement

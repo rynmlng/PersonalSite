@@ -108,30 +108,9 @@ p {
   width: 90%;
 }
 .main .content-box {
-  background-color: #ffffff;
-  border-radius: 6px;
-  opacity: 0.4;
-  padding: 15px;
-  -moz-transition: background-color 0.4s linear;
-  -ms-transition: background-color 0.4s linear;
-  -webkit-transition: background-color 0.4s linear;
-  transition: background-color 0.4s linear;
-  -moz-transition: opacity 0.2s linear;
-  -ms-transition: opacity 0.2s linear;
-  -webkit-transition: opacity 0.2s linear;
-  transition: opacity 0.2s linear;
-}
-.main .content-box.focus {
   background-color: rgba(255, 255, 255, 0.8);
-  opacity: 1;
-  -moz-transition: background-color 0.4s linear;
-  -ms-transition: background-color 0.4s linear;
-  -webkit-transition: background-color 0.4s linear;
-  transition: background-color 0.4s linear;
-  -moz-transition: opacity 0.2s linear;
-  -ms-transition: opacity 0.2s linear;
-  -webkit-transition: opacity 0.2s linear;
-  transition: opacity 0.2s linear;
+  border-radius: 6px;
+  padding: 15px;
 }
 .main #header {
   display: flex;

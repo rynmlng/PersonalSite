@@ -1,5 +1,7 @@
 var CONTENT_BOX_MARGIN = 20;
 
+// TODO The distance from the top of the last content box to the end of the page should be the user's viewport,
+//        therefore you should be able to roughly calculate how many squares you need b/c they are all 100px.
 var MAX_RECTANGLES = 100;
 
 var RECTANGLE_COLOR_CLASS_WEIGHTS = {
@@ -145,49 +147,6 @@ function addNavigationWaypoints() {
 
 }
 
-function addContentBoxWaypoints() {
-  /* Add waypoints to the page's content boxes to allow focus-toggling
-   *   when content comes into the viewport.
-   *
-   * Here are the rules:
-   * - Scrolling down: when content-box is showing its bottom 100px, remove from focus
-   * - Scrolling up: when content-box is showing its bottom 100px, put in focus
-   *
-   * - Scrolling down: when content-box is showing its top 100px, put in focus
-   * - Scrolling up: when content-box is only showing top 100px, remove from focus
-   */
-  $('.content-box').each(
-    function(i, contentBox) {
-      var contentBoxHeight = $(contentBox).outerHeight(),
-          viewportEdgeStartFade = 200; // px
-
-      var topWaypoint = new Waypoint({
-        element: contentBox,
-        handler: function(direction) {
-          if (direction == 'down') {
-            $(this.element).removeClass('focus');
-          } else {
-            $(this.element).addClass('focus');
-          }
-        },
-        offset: -1 * (contentBoxHeight - viewportEdgeStartFade)
-      });
-
-      var waypoint = new Waypoint({
-        element: contentBox,
-        handler: function(direction) {
-          if (direction == 'down') {
-            $(this.element).addClass('focus');
-          } else {
-            $(this.element).removeClass('focus');
-          }
-        },
-        offset: window.innerHeight - viewportEdgeStartFade
-      });
-    }
-  );
-}
-
 function addGalleryPreview() {
   /* Add look-and-feel of the gallery including hovering and preview movement
    * based on the mouse.
@@ -208,7 +167,6 @@ function addGalleryPreview() {
         photoPositionBottom = photoPositionTop + photoHeight,
         photoPositionRight = photoPositionLeft + photoWidth;
 
-    // TODO is document the right container to bind the event to?
     $gallery.mousemove(function(eventData) {
       if ((eventData.pageX < photoPositionLeft) ||
           (eventData.pageX > photoPositionRight) ||
@@ -259,15 +217,11 @@ function setupNavigation() {
 }
 
 function setupContent() {
-  addContentBoxWaypoints();
   addGalleryPreview();
   renderMarkdown();
 }
 
 $(function() {
-  // TODO The distance from the top of the last content box to the end of the page should be the user's viewport,
-  //        therefore you should be able to roughly calculate how many squares you need b/c they are all 100px.
-
   overridePackeryToCenter();
 
   setupBackground();
@@ -279,6 +233,7 @@ $(function() {
     setupBackground(true);
     setupNavigation();
     setupContent();
+    renderMarkdown();
   });
 
 });
