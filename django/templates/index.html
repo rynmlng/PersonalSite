@@ -45,6 +45,7 @@
       </div>
       -->
       <div id="identity" class="banner content-box">
+        <h1>Identity</h1>
         <div class="gallery">
           <div class="photo" style="background-image: url('/static/img/gallery/new_office_view.jpg')"></div>
           <div class="photo" style="background-image: url('/static/img/gallery/workbench_in_progress.jpg')"></div>
@@ -66,10 +67,32 @@
         My balance in life comes with time vested in home projects, woodworking, brewing beer, and studying number theory &amp; psychophysics. These are all subjects I've gained recent interest in and devote a vast majority of my free time into. Learning new arts &amp; trades helps me interpret philosophies and strategies in entreprenurism and software development methodologies to think differently.</p>
       </div>
       <div id="social" class="banner content-box">
-        <p>Get to know me a little better by eavesdropping on my social media.</p>
-        <!-- TODO insert social buttons for LinkedIn, Twitter, Facebook -->
+        <h1>Social</h1>
+        <div class="networks">
+          <div class="network linkedin">
+            <a class="link" href="https://www.linkedin.com/in/ryanmiling" target="_blank"></a>
+            <div class="label">LinkedIn</div>
+          </div>
+          <div class="network angellist">
+            <a class="link" href="https://angel.co/ryanmiling" target="_blank"></a>
+            <div class="label">AngelList</div>
+          </div>
+          <div class="network github">
+            <a class="link" href="https://github.com/rynmlng" target="_blank"></a>
+            <div class="label">GitHub</div>
+          </div>
+          <div class="network twitter">
+            <a class="link" href="https://twitter.com/ryanmiling" target="_blank"></a>
+            <div class="label">Twitter</div>
+          </div>
+          <div class="network soundcloud">
+            <div class="label">SoundCloud</div>
+            <a class="link" href="https://soundcloud.com/ryan-miling" target="_blank"></a>
+          </div>
+        </div>
       </div>
       <div id="blog" class="banner content-box">
+        <h1>Blog</h1>
         {% for post in blog_posts %}
         <div class="post">
           <div class="date">{{ post.created_datetime.date }}</div>

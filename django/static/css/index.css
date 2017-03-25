@@ -36,6 +36,7 @@ p {
   margin: 0 auto;
 }
 .background .rectangle {
+  border-radius: 2px;
   float: left;
   height: 100px;
   width: 100px;
@@ -108,9 +109,10 @@ p {
   width: 90%;
 }
 .main .content-box {
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.75);
   border-radius: 6px;
   padding: 15px;
+  text-align: left;
 }
 .main #header {
   display: flex;
@@ -207,10 +209,7 @@ p {
   -webkit-box-sizing: border-box;
 }
 .main #identity .gallery .preview-photo {
-  background-color: rgba(0, 0, 0, 0.8);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 100%;
+  background: rgba(0, 0, 0, 0.8) center / 100% no-repeat;
   border-radius: 6px;
   cursor: pointer;
   display: none;
@@ -219,6 +218,52 @@ p {
   position: absolute;
   top: 0px;
   width: 100%;
+}
+.main #social .networks {
+  display: flex;
+  justify-content: center;
+}
+.main #social .networks .network {
+  background: #fff center / 100% no-repeat;
+  border-radius: 6px;
+  height: 100px;
+  margin: 10px;
+  overflow: hidden;
+  position: relative;
+  width: 100px;
+}
+.main #social .networks .network .label {
+  background-color: rgba(0, 0, 0, 0.8);
+  bottom: -22px;
+  color: #fff;
+  font-size: 16px;
+  line-height: 16px;
+  padding: 3px 0px;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+}
+.main #social .networks .network .link {
+  display: inline-block;
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
+.main #social .networks .network.angellist {
+  background-image: url('../img/social/angellist.png');
+}
+.main #social .networks .network.github {
+  background-color: #000;
+  background-image: url('../img/social/github.png');
+}
+.main #social .networks .network.linkedin {
+  background-image: url('../img/social/linkedin.png');
+}
+.main #social .networks .network.soundcloud {
+  background-image: url('../img/social/soundcloud.png');
+}
+.main #social .networks .network.twitter {
+  background-image: url('../img/social/twitter.png');
 }
 .main #blog .post {
   border-bottom: 3px solid rbga(0, 0, 0, 0.3);

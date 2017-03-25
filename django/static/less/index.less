@@ -24,6 +24,7 @@
 .background {
   margin: 0 auto;
   .rectangle {
+    border-radius: 2px;
     float: left;
     height: @baseRectangleHeight;
     width: @baseRectangleWidth;
@@ -101,9 +102,10 @@
   }
 
   .content-box {
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.75);
     border-radius: 6px;
     padding: 15px;
+    text-align: left;
   }
 
   #header {
@@ -193,10 +195,10 @@
         -webkit-box-sizing: border-box;
       }
       .preview-photo {
-        background-color: rgba(0, 0, 0, 0.8);
-				background-position: center;
-				background-repeat: no-repeat;
-				background-size: 100%;
+        background: rgba(0, 0, 0, 0.8) center/100% no-repeat;
+        //background: bg-color bg-image position/bg-size bg-repeat bg-origin bg-clip bg-attachment initial|inherit;
+				//background-repeat: no-repeat;
+				//background-size: 100%;
         border-radius: 6px;
         cursor: pointer;
         display: none;
@@ -205,6 +207,54 @@
         position: absolute;
         top: 0px;
         width: 100%;
+      }
+    }
+  }
+  #social {
+    .networks {
+      display: flex;
+      justify-content: center;
+      .network {
+        background: @white center/100% no-repeat;
+        border-radius: 6px;
+        height: 100px;
+        margin: 10px;
+        overflow: hidden;
+        position: relative;
+        width: 100px;
+        .label {
+          background-color: rgba(0, 0, 0, 0.8);
+          bottom: -22px;
+          color: @white;
+          font-size: 16px;
+          line-height: 16px;
+          padding: 3px 0px;
+          position: absolute;
+          text-align: center;
+          width: 100%;
+        }
+        .link {
+          display: inline-block;
+          height: 100%;
+          position: absolute;
+          width: 100%;
+        }
+        &.angellist {
+          background-image: url('../img/social/angellist.png');
+        }
+        &.github {
+          background-color: @black;
+          background-image: url('../img/social/github.png');
+        }
+        &.linkedin {
+          background-image: url('../img/social/linkedin.png');
+        }
+        &.soundcloud {
+          background-image: url('../img/social/soundcloud.png');
+        }
+        &.twitter {
+          background-image: url('../img/social/twitter.png');
+        }
       }
     }
   }

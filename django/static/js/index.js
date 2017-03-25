@@ -1,9 +1,5 @@
 var CONTENT_BOX_MARGIN = 20;
 
-// TODO The distance from the top of the last content box to the end of the page should be the user's viewport,
-//        therefore you should be able to roughly calculate how many squares you need b/c they are all 100px.
-var MAX_RECTANGLES = 100;
-
 var RECTANGLE_COLOR_CLASS_WEIGHTS = {
   'beige': 3,
   'blue': 2,
@@ -11,8 +7,8 @@ var RECTANGLE_COLOR_CLASS_WEIGHTS = {
   'eggshellWhite': 8
 };
 
+var RECTANGLE_GUTTER = 10;
 var RECTANGLE_WIDTH = 100;
-
 var RECTANGLE_SIZE_SCALARS = [1, 2, 3];
 
 
@@ -47,7 +43,18 @@ function addRandomRectangles($container) {
 
   var $rectangles = [];
 
-  for (var i = 0; i < MAX_RECTANGLES; i++) {
+  var $mainContainer = $('.main'),
+      mainContainerArea = $mainContainer.width() * $mainContainer.height();
+
+  var maxRectangleWidth = Math.max(RECTANGLE_SIZE_SCALARS) * RECTANGLE_WIDTH;
+  // TODO RECTANGLE_GUTTER
+  // Get number of rectangles wide, add in n-1 * gutter
+  // Get number of rectangles high, add in n-1 * gutter
+  // Sum this to get total area and divide by rectangle size.
+
+  var max_rectangles = 100; // TODO finish figuring this out
+
+  for (var i = 0; i < max_rectangles; i++) {
     // cycle the heat map for a perfect distribution
     var colorCSSClass = colorClassHeatMap[i % colorClassHeatMap.length];
 
@@ -190,10 +197,35 @@ function addGalleryPreview() {
   });
 }
 
+function addSocialLabelPopUps() {
+  /* Pop-up the label on the social network when hovering over. */
+  $('.networks .network').hover(function() {
+    $(this).children('.label').animate({bottom: 0}, 100);
+  }, function() {
+    var $label = $(this).children('.label');
+    $label.animate({bottom: -1 * $label.outerHeight()}, 100);
+  });
+
+}
+
 function renderMarkdown() {
-  /* Render all HTML elements with the class name 'markdown' with markdown styling. */
+  /* Render all HTML elements with the class name 'markdown' with markdown styling.
+   *   If markdown has been done before, we will reuse the same created container.
+   **/
   $('.markdown').each(function() {
-    $(this).html(marked($(this).text()));
+    var renderedText = marked($(this).text());
+
+    var $markdownRenderedContainer = $(this).next('.markdown-rendered');
+    if ($markdownRenderedContainer.length == 0) {
+        $markdownRenderedContainer = $('<div class="markdown-rendered"></div>');
+        $markdownRenderedContainer.html(renderedText);
+
+        $markdownRenderedContainer.insertAfter($(this));
+    } else {
+        $markdownRenderedContainer.html(renderedText);
+    }
+
+    $(this).hide();
   });
 }
 
@@ -209,7 +241,7 @@ function setupBackground(reloadPackery) {
     $background.packery({
       columnWidth: RECTANGLE_WIDTH,
       itemSelector: '.rectangle',
-      gutter: 10
+      gutter: RECTANGLE_GUTTER
     });
   }
 }
@@ -224,6 +256,7 @@ function setupNavigation() {
 
 function setupContent() {
   addGalleryPreview();
+  addSocialLabelPopUps();
   renderMarkdown();
 }
 
@@ -239,7 +272,6 @@ $(function() {
     setupBackground(true);
     setupNavigation();
     setupContent();
-    renderMarkdown();
   });
 
 });
