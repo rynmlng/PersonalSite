@@ -106,6 +106,19 @@
     border-radius: 6px;
     padding: 15px;
     text-align: left;
+    h1 {
+      line-height: 32px;
+      .embossed-light();
+    }
+    .separator {
+      background: rgba(102, 102, 102, 0.75);
+      background: -moz-linear-gradient(left, rgba(102, 102, 102, 0) 0%, rgba(102, 102, 102, 0.75) 100%);
+      background: -webkit-gradient(left top, right top, color-stop(0%, rgba(102, 102, 102, 0)), color-stop(100%, rgba(102, 102, 102, 0.75)));
+      background: -webkit-linear-gradient(left, rgba(102, 102, 102, 0) 0%, rgba(102, 102, 102, 0.75) 100%);
+      background: linear-gradient(to right, rgba(102, 102, 102, 0) 0%, rgba(102, 102, 102, 0.75) 100%);
+      border-radius: 13px;
+      height: 4px;
+    }
   }
 
   #header {
@@ -123,7 +136,7 @@
       align-items: flex-end;
       display: flex;
       .links {
-        margin: 20px 0px 50px 20px;
+        margin: 20px 0px 20px 20px;
         padding: 10px 0px;
         .link {
           cursor: pointer;

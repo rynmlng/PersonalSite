@@ -46,6 +46,7 @@
       -->
       <div id="identity" class="banner content-box">
         <h1>Identity</h1>
+        <hr class="separator"/>
         <div class="gallery">
           <div class="photo" style="background-image: url('/static/img/gallery/new_office_view.jpg')"></div>
           <div class="photo" style="background-image: url('/static/img/gallery/workbench_in_progress.jpg')"></div>
@@ -68,6 +69,7 @@
       </div>
       <div id="social" class="banner content-box">
         <h1>Social</h1>
+        <hr class="separator"/>
         <div class="networks">
           <div class="network linkedin">
             <a class="link" href="https://www.linkedin.com/in/ryanmiling" target="_blank"></a>
@@ -93,6 +95,7 @@
       </div>
       <div id="blog" class="banner content-box">
         <h1>Blog</h1>
+        <hr class="separator"/>
         {% for post in blog_posts %}
         <div class="post">
           <div class="date">{{ post.created_datetime.date }}</div>
