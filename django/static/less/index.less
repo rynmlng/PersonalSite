@@ -96,7 +96,7 @@
   width: 100%;
 
   .banner {
-    justify-content: center;
+    display: inline-block;
     margin-top: 20px;
     width: 90%;
   }
@@ -106,16 +106,19 @@
     border-radius: 6px;
     padding: 15px;
     text-align: left;
-    h1 {
+    & > h1 {
+      font-family: Lato;
       line-height: 32px;
       .embossed-light();
     }
     .separator {
-      background: rgba(102, 102, 102, 0.75);
-      background: -moz-linear-gradient(left, rgba(102, 102, 102, 0) 0%, rgba(102, 102, 102, 0.75) 100%);
-      background: -webkit-gradient(left top, right top, color-stop(0%, rgba(102, 102, 102, 0)), color-stop(100%, rgba(102, 102, 102, 0.75)));
-      background: -webkit-linear-gradient(left, rgba(102, 102, 102, 0) 0%, rgba(102, 102, 102, 0.75) 100%);
-      background: linear-gradient(to right, rgba(102, 102, 102, 0) 0%, rgba(102, 102, 102, 0.75) 100%);
+      background: rgba(102, 102, 102, 0.5);
+      background: -moz-linear-gradient(left, rgba(102, 102, 102, 0) 0%, rgba(102, 102, 102, 0.3) 30%, rgba(102, 102, 102, 0.5) 100%);
+      background: -webkit-gradient(left top, right top, color-stop(0%, rgba(102, 102, 102, 0.1)), color-stop(30%, rgba(102, 102, 102, 0.3)), color-stop(100%, rgba(102, 102, 102, 0.5)));
+      background: -webkit-linear-gradient(left, rgba(102, 102, 102, 0.1) 0%, rgba(102, 102, 102, 0.3) 30%, rgba(102, 102, 102, 0.55) 100%);
+
+      background: linear-gradient(to right, rgba(102, 102, 102, 0.1) 0%, rgba(102, 102, 102, 0.3) 30%, rgba(102, 102, 102, 0.5) 100%);
+
       border-radius: 13px;
       height: 4px;
     }
@@ -123,6 +126,7 @@
 
   #header {
     display: flex;
+    font-family: Lato, arial;
     justify-content: space-between;
     .summary {
       font-size: 32px;
@@ -185,96 +189,97 @@
       }
     }
   }
-  #identity {
-    .gallery {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      position: relative;
-      .photo {
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: 200px;
-        border-radius: 6px;
-        box-sizing: border-box;
-        box-sizing: border-box;
-        cursor: pointer;
-        height: 100px;
-        margin: 10px;
-        overflow: hidden;
-        padding: 10px;
-        width: 100px;
-        -moz-box-sizing: border-box;
-        -webkit-box-sizing: border-box;
-      }
-      .preview-photo {
-        background: rgba(0, 0, 0, 0.8) center/100% no-repeat;
-        //background: bg-color bg-image position/bg-size bg-repeat bg-origin bg-clip bg-attachment initial|inherit;
-				//background-repeat: no-repeat;
-				//background-size: 100%;
-        border-radius: 6px;
-        cursor: pointer;
-        display: none;
-        left: 0px;
-        height: 100%;
-        position: absolute;
-        top: 0px;
-        width: 100%;
-      }
-    }
-  }
-  #social {
-    .networks {
-      display: flex;
-      justify-content: center;
-      .network {
-        background: @white center/100% no-repeat;
-        border-radius: 6px;
-        height: 100px;
-        margin: 10px;
-        overflow: hidden;
+  #content {
+    font-family: Lora, arial;
+    #identity {
+      .gallery {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
         position: relative;
-        width: 100px;
-        .label {
-          background-color: rgba(0, 0, 0, 0.8);
-          bottom: -22px;
-          color: @white;
-          font-size: 16px;
-          line-height: 16px;
-          padding: 3px 0px;
-          position: absolute;
-          text-align: center;
-          width: 100%;
+        .photo {
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: 200px;
+          border-radius: 6px;
+          box-sizing: border-box;
+          box-sizing: border-box;
+          cursor: pointer;
+          height: 100px;
+          margin: 10px;
+          overflow: hidden;
+          padding: 10px;
+          width: 100px;
+          -moz-box-sizing: border-box;
+          -webkit-box-sizing: border-box;
         }
-        .link {
-          display: inline-block;
+        .preview-photo {
+          background: rgba(0, 0, 0, 0.8) center/100% no-repeat;
+          border-radius: 6px;
+          cursor: pointer;
+          display: none;
+          left: 0px;
           height: 100%;
           position: absolute;
+          top: 0px;
           width: 100%;
-        }
-        &.angellist {
-          background-image: url('../img/social/angellist.png');
-        }
-        &.github {
-          background-color: @black;
-          background-image: url('../img/social/github.png');
-        }
-        &.linkedin {
-          background-image: url('../img/social/linkedin.png');
-        }
-        &.soundcloud {
-          background-image: url('../img/social/soundcloud.png');
-        }
-        &.twitter {
-          background-image: url('../img/social/twitter.png');
         }
       }
     }
-  }
-  #blog {
-    .post {
-      border-bottom: 3px solid rbga(0, 0, 0, 0.3);
-      padding: 20px 0px;
+    #social {
+      .networks {
+        display: flex;
+        justify-content: center;
+        .network {
+          background: @white center/100% no-repeat;
+          border-radius: 6px;
+          height: 100px;
+          margin: 10px;
+          overflow: hidden;
+          position: relative;
+          width: 100px;
+          .label {
+            background-color: rgba(0, 0, 0, 0.8);
+            bottom: -22px;
+            color: @white;
+            font-size: 16px;
+            line-height: 16px;
+            padding: 3px 0px;
+            position: absolute;
+            text-align: center;
+            width: 100%;
+          }
+          .link {
+            display: inline-block;
+            height: 100%;
+            position: absolute;
+            width: 100%;
+            z-index: 100;
+          }
+          &.angellist {
+            background-image: url('../img/social/angellist.png');
+          }
+          &.github {
+            background-color: @black;
+            background-image: url('../img/social/github.png');
+          }
+          &.linkedin {
+            background-image: url('../img/social/linkedin.png');
+          }
+          &.soundcloud {
+            background-image: url('../img/social/soundcloud.png');
+          }
+          &.twitter {
+            background-image: url('../img/social/twitter.png');
+          }
+        }
+      }
+    }
+    #blog {
+      .post {
+        border-bottom: 3px solid rgba(0, 0, 0, 0.3);
+        padding: 20px 0px;
+      }
     }
   }
 }

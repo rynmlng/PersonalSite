@@ -1,85 +1,38 @@
-//////////////
-// VARIABLES
-//////////////
-
-@beige: #f4d266;
-@black: #000;
-@blue: #2a0c95;
-@charcoal: #190a0f;
-@darkGrey: #333;
-@eggshellWhite: #e6dedc;
-@red: #d12b1b;
-@white: #fff;
-
 @font-face {
   font-family: Lato;
   src: url('../../static/fonts/Lato-Regular.ttf') format('truetype');
 }
-
-////////////
-// GLOBALS
-////////////
-
+@font-face {
+  font-family: Lora;
+  src: url('../../static/fonts/Lora-Regular.ttf') format('truetype');
+}
 * {
   border: 0;
-  box-sizing: border-box;
-  font-family: Lato, arial;
   margin: 0;
   padding: 0;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
 }
-
 a {
   text-decoration: none;
 }
-
 body {
-  background-color: @charcoal;
+  background-color: #190a0f;
 }
-
 p {
   cursor: normal;
+  text-indent: 50px;
 }
-
-* {
-}
-
 .hidden {
   visibility: hidden;
 }
-
-///////////
-// MIXINS
-///////////
-.abstract-transition(@property, @time) {
-  -moz-transition: @property @time linear;
-  -ms-transition: @property @time linear;
-  -webkit-transition: @property @time linear;
-  transition: @property @time linear;
-}
-
-.background-color-transition() {
-  .abstract-transition(background-color, 0.4s);
-}
-
-.color-transition() {
-  .abstract-transition(color, 0.2s);
-}
-
 .opacity-transition {
-  .abstract-transition(opacity, 0.2s);
+  -moz-transition: opacity 0.2s linear;
+  -ms-transition: opacity 0.2s linear;
+  -webkit-transition: opacity 0.2s linear;
+  transition: opacity 0.2s linear;
 }
-
-.embossed-light() {
-  color: transparent;
-  text-shadow: 0px 3px 3px rgba(255, 255, 255, 0.5), 0px 1px 0px rgba(0, 0, 0, 0.8);
-}
-
 .zIndexHigher {
   z-index: 100;
 }
-
 .zIndexHighest {
   z-index: 1000;
 }
