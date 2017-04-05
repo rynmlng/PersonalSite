@@ -1,0 +1,15 @@
+# Work Cadence
+
+    **Middle managers look away,** this article could be your mixed review. As a software engineer, especially in a startup, it is not worth working your hardest every day. Don't push those extra WPMs, burn the midnight oil, or burn down your backlog *consistently.* Being an alert, available team contributor is the right mindset to be in as an engineer.
+
+    During the Cold War Project Looking Glass was in full swing. The U.S. Air Force held surveillance of their adversaries in the highest regard. America's bombers could be scrambled and in 8 minutes airborn and en route to their target. This was the height of the Cold War and such a feat of preparation was the result of a balance of alertness for the pilots.
+
+INSERT PHOTO OF BOMBER PILOTS AT MARYSVILLE.
+
+    What was a pilot's life while on alert? They remained on their air base suited, fit, calm, and informative. They were prepared for quick reaction to an alarm, held at second nature. There was no need to spend their days in topsy-turvy flight simulations. Day-to-day responsibilities on the air base were sound, but nothing too strenuous. Pilots were fully contributing members of their organization and when the alarm bell sounded, they would continue to excel by reacting to the alarm swiftly.
+
+    Engineers should be fully contributing individuals and effective workers when the alarm bell sounds. Databases run out of disk space at 3AM, PMs can pull in deadlines for a software release. A company will absolutely be more appreciative when those curveballs are pitched and you can knock them out of the park. Rapidly responding to your text alerts for outages, repairing broken servers with a sound mind will produce less adverse side-effects. Working in 4th gear and accelerating to 5th with your team to finish a "hot feature" will get rewarding appreciation from your PMs.
+
+INSERT SELF MADE CHART ON QUALITY VS. EFFORT COMPARISON
+
+    This is not some big wonder that the less overworked one is the more one can concentrate and deliver higher quality output. This point needs to be reiterated though, because I've seen it happen too much in startup companies with engineers. Engineers are hired, pushed to work as hard as they can to build a product fast, then traverse into a state of disarray losing focus and diminishing quality in their work. They lose satisfaction in their work once they can no longer hold their cadence. Working your hardest is an act of self-cannibalization that will produce burnout. **It's not worth it.** Always strive to produce high quality work every day over high quantity, especially in software - a highly used product.

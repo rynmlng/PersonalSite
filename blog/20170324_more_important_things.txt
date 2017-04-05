@@ -1,9 +1,0 @@
-#There Are Always More Important Things
-
-    Prioritization of work is something that is constantly being calibrated on a day-by-day basis for an Engineering team. “Can you work on this today?” or “Drop what you’re doing, we should work on this now.” are not uncommon phrases in this line of work. That being said, there is a double-edged sword to the statement “unless you have more important things to do.”
-
-    There are *always* more important things to do. In the back of every Engineer’s head there are a list of priorities that need to get done that simply aren’t on paper - “I need to fix that one area of code that’s gotten dirty over the last few months” or “We need to reduce that single point of failure with our database.” In addition, there is always slated work that comes next. An Engineer always knows what they’re going to work on next, and that’s treated with higher importance than the work we do yesterday. (TODO condescending statement?)
-
-    Don’t tell an Engineer “unless there are more important things to do.” That can come off as a negative reverse sell, which does not work well with Engineers that do not want to make real-time prioritization decisions.
-
-TODO ETC.
