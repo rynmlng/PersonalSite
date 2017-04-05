@@ -38,38 +38,73 @@ function getRandomHeatMap(weightedMap) {
 }
 
 function addRandomRectangles($container) {
-  /* Dynamically generate random rectangles within our scalar constraints and add to the DOM. */
-  var colorClassHeatMap = getRandomHeatMap(RECTANGLE_COLOR_CLASS_WEIGHTS);
+  /* Dynamically generate random rectangles within our scalar constraints and add to the DOM.
+   * Return whether or not rectangles were added to or removed from the given container.
+   */
+  console.log('');
+  console.log('Main height='+$('.main').height());
+  console.log('Document width='+$(document).width());
+  var pageArea = $('.main').height() * $(document).width(),
+      rectanglesArea = 0;
+
+  var doRemoveRectangles = false,
+      hasRectanglesChanged = false;
+
+  var removeCount = addCount = 0; // XXX
+
+  $container.find('.rectangle').each(function(i, rectangle) {
+    var $rectangle = $(rectangle),
+        rectangleArea = $rectangle.height() * $rectangle.width();
+
+    if (doRemoveRectangles) {
+      $rectangle.remove();
+      removeCount++; // XXX
+      hasRectanglesChanged = true;
+    } else if (rectanglesArea > pageArea) {
+      // all further discovered rectangles should be removed to keep the background minimal
+      doRemoveRectangles = true;
+      $rectangle.remove();
+      removeCount++; // XXX
+    } else {
+      rectanglesArea += rectangleArea;
+    }
+  });
 
   var $rectangles = [];
 
-  var $mainContainer = $('.main'),
-      mainContainerArea = $mainContainer.width() * $mainContainer.height();
+  if (rectanglesArea < pageArea) {
+    var colorClassHeatMap = getRandomHeatMap(RECTANGLE_COLOR_CLASS_WEIGHTS),
+        i = 0;
 
-  var maxRectangleWidth = Math.max(RECTANGLE_SIZE_SCALARS) * RECTANGLE_WIDTH;
-  // TODO RECTANGLE_GUTTER
-  // Get number of rectangles wide, add in n-1 * gutter
-  // Get number of rectangles high, add in n-1 * gutter
-  // Sum this to get total area and divide by rectangle size.
+    while (rectanglesArea < pageArea) {
+      // cycle the heat map for a perfect distribution
+      var colorCSSClass = colorClassHeatMap[i % colorClassHeatMap.length];
 
-  var max_rectangles = 100; // TODO finish figuring this out
+      var rectangleHeightScalar = RECTANGLE_SIZE_SCALARS[Math.floor(Math.random() * RECTANGLE_SIZE_SCALARS.length)],
+          rectangleWidthScalar = RECTANGLE_SIZE_SCALARS[Math.floor(Math.random() * RECTANGLE_SIZE_SCALARS.length)];
 
-  for (var i = 0; i < max_rectangles; i++) {
-    // cycle the heat map for a perfect distribution
-    var colorCSSClass = colorClassHeatMap[i % colorClassHeatMap.length];
+      var $rectangle = $('<div class="rectangle ' + colorCSSClass +
+              ' height' + rectangleHeightScalar +
+              ' width' + rectangleWidthScalar +
+              '"><div class="grunge"></div></div>');
 
-    var rectangleHeightScalar = RECTANGLE_SIZE_SCALARS[Math.floor(Math.random() * RECTANGLE_SIZE_SCALARS.length)],
-        rectangleWidthScalar = RECTANGLE_SIZE_SCALARS[Math.floor(Math.random() * RECTANGLE_SIZE_SCALARS.length)];
+      $rectangles.push($rectangle);
+      i++;
 
-    var $rectangle = $('<div class="rectangle ' + colorCSSClass +
-            ' height' + rectangleHeightScalar +
-            ' width' + rectangleWidthScalar +
-            '"><div class="grunge"></div></div>');
-
-    $rectangles.push($rectangle);
+      rectanglesArea += ((RECTANGLE_WIDTH * rectangleHeightScalar)) * ((RECTANGLE_WIDTH * rectangleWidthScalar));
+      hasRectanglesChanged = true;
+    }
   }
 
-  $container.append($rectangles);
+  if ($rectangles.length > 0) {
+      $container.append($rectangles);
+  }
+
+  addCount += $rectangles.length; // XXX
+  console.log('Added='+addCount); // XXX
+  console.log('Removed='+removeCount); // XXX
+
+  return hasRectanglesChanged;
 }
 
 function overridePackeryToCenter() {
@@ -229,21 +264,28 @@ function renderMarkdown() {
   });
 }
 
-function setupBackground(reloadPackery) {
+function setupBackground(loadPackery) {
   /* Build the body background, specifically the rectangles. */
   var $background = $('.background');
 
-  if (reloadPackery) {
-    $background.packery('reloadItems');
-  } else {
-    addRandomRectangles($background);
+  $('.background-cover').height(0);
 
-    $background.packery({
-      columnWidth: RECTANGLE_WIDTH,
-      itemSelector: '.rectangle',
-      gutter: RECTANGLE_GUTTER
-    });
+  var hasRectanglesAdded = addRandomRectangles($background);
+
+  if (hasRectanglesAdded) {
+    if (loadPackery) {
+      $background.packery({
+        columnWidth: RECTANGLE_WIDTH,
+        itemSelector: '.rectangle',
+        gutter: RECTANGLE_GUTTER
+      });
+    } else {
+      $background.packery('reloadItems');
+    }
   }
+
+  console.log('New height='+$(document).height());
+  $('.background-cover').height($(document).height());
 }
 
 function setupNavigation() {
@@ -263,13 +305,13 @@ function setupContent() {
 $(function() {
   overridePackeryToCenter();
 
-  setupBackground();
+  setupBackground(true);
   setupNavigation();
   setupContent();
 
   // Need to reset for any responsiveness.
   $(window).resize(function() {
-    setupBackground(true);
+    setupBackground(false);
     setupNavigation();
     setupContent();
   });
