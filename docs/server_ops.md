@@ -1,11 +1,9 @@
-# Setup
+# Server Ops
 
 ## First-time
-
 Clone this repo into your target directory.
 
 ### Python requirements
-
 1.`cd` into the repo's root directory.
 2. In the repo's root directory run `virtualenv venv`
 3. `source venv/bin/activate`
@@ -13,19 +11,21 @@ Clone this repo into your target directory.
 
 
 ### MongoDB
-  * https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
+https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
 
 
 ### Apache 2
-  * sudo apt-get install apache2 apache2-dev
+`sudo apt-get install apache2 apache2-dev`
 
 
 ### mod_wsgi
-  * http://modwsgi.readthedocs.io/en/develop/user-guides/quick-installation-guide.html
+* http://modwsgi.readthedocs.io/en/develop/user-guides/quick-installation-guide.html
+
+### npm
+* **lessc** and plugins, installed via `npm install -g less less-plugin-clean-css`
 
 
 ## Starting the server
-
 1. Start MongoDB via `mongod`
 2. Start the web server...
   1. `cd` into your repo's root.
@@ -33,3 +33,7 @@ Clone this repo into your target directory.
   3. `./manage.py runserver` to start the web server
 
 TODO starting the databases
+
+## Compiling Static Assets
+* Compiling less
+  Compile a file with `lessc index.less --clean-css > index.css` and move the CSS into your target directory.
