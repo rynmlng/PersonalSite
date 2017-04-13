@@ -1,21 +1,28 @@
+from django.utils.functional import cached_property
+
 from blog.models import BlogDatabase
 
 
 class PostService(object):
-    """ Service that provides harnesses all business logic and interactions with blog posts. """
+    """ Service that harnesses all business logic and CRUD ops with blog posts. """
 
-    def get_all_posts(self):
-        """ Get all blog posts, returned as an iterable DB cursor.
-            When iterated over this returns a list of dictionaries with keys content, created_datetime, and _id.
+    @cached_property
+    def collection(self):
+        return BlogDatabase().get_collection('post')
+
+    def get_all_posts(self, *fields):
+        """ Get all blog posts, returned as an iterable DB cursor yielding dictionaries.
+            Optionally passing in fields restricts the objects' fields returned.
         """
-        return BlogDatabase().get_collection('post').find()
+        if fields:
+            return self.collection.find(projection=fields)
+        else:
+            return self.collection.find()
 
-    # TODO save blogs w/a created_date & content
+    def save_post(self, post):
+        """ Save a blog post to the database and return its inserted id. """
+        return self.collection.insert_one(post.serialize())
 
-    def save_post(self, created_datetime, content):
-        """ Save a blog post being provided the datetime is was created and the markdown content.
-            The datetime must be provided because datetime.dates are not BSON-serializable.
-        """
-        post = {'created_datetime': created_datetime, 'content': content}
-
-        #BlogDatabase().get_collection('post').insert_one(
+    def save_posts(self, posts):
+        """ Bulk save blog posts to the database and return their inserted ids. """
+        return self.collection.insert_many(map(lambda post: post.serialize(), posts))

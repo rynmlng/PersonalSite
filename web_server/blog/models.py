@@ -1,3 +1,5 @@
+from abc import ABCMeta, abstractproperty
+
 from django.conf import settings
 from django.db import models
 from pymongo import MongoClient
@@ -25,3 +27,35 @@ class MongoDatabase(object):
 
 class BlogDatabase(MongoDatabase):
     DATABASE_NAME = settings.MONGO_DATABASE['blog']['NAME']
+
+
+class SimpleModel(object):
+    """ Simple representation of a model requiring fields to be defined on instantiation. """
+
+    @abstractproperty
+    def fields(self):
+        pass
+
+    def __init__(self, **values):
+        missing_fields = []
+        for field in self.fields:
+            if field not in values:
+                missing_fields.append(field)
+            else:
+                setattr(self, field, values[field])
+
+        if missing_fields:
+            raise ValueError('Fields are missing from the model definition. ({})'.format(','.join(missing_fields)))
+
+    def serialize(self):
+        return {field: getattr(self, field) for field in self.fields}
+
+    __metaclass__ = ABCMeta
+
+
+class BlogPost(SimpleModel):
+    """ Represents a blog post to save to the database. """
+
+    @property
+    def fields(self):
+        return ('content', 'created_datetime', 'title')
