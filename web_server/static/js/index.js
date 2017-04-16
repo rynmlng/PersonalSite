@@ -7,8 +7,9 @@ var RECTANGLE_COLOR_CLASS_WEIGHTS = {
   'eggshellWhite': 8
 };
 
+var BACKGROUND_COVER_CLASS = '<div class="background-cover"></div>';
 var RECTANGLE_GUTTER = 10;
-var RECTANGLE_WIDTH = 100;
+var RECTANGLE_SIDE = 100;
 var RECTANGLE_SIZE_SCALARS = [1, 2, 3];
 
 
@@ -37,41 +38,52 @@ function getRandomHeatMap(weightedMap) {
   return randomizedHeatMap;
 }
 
-function addRandomRectangles($container) {
-  /* Dynamically generate random rectangles within our scalar constraints and add to the DOM.
-   * Return whether or not rectangles were added to or removed from the given container.
+function fitRectangles($container, isPackeryEnabled) {
+  /* Dynamically fit random rectangles within our scalar constraints and
+   *   add or remove them from the DOM.
+   *
+   * If the packery lib has been instantiated use that, otherwise DOM insertion/deleton directly.
    */
-  console.log('');
-  console.log('Main height='+$('.main').height());
-  console.log('Document width='+$(document).width());
-  var pageArea = $('.main').height() * $(document).width(),
+  console.log('\nPackery enabled='+isPackeryEnabled);
+  var pageArea = $('.main').height() * $(window).width(),
       rectanglesArea = 0;
 
-  var doRemoveRectangles = false,
-      hasRectanglesChanged = false;
+  console.log('Need to fill area of '+pageArea);
 
-  var removeCount = addCount = 0; // XXX
+  //pageArea += pageArea * (2 * RECTANGLE_GUTTER / RECTANGLE_SIDE); // account for gutters, etc.
+
+  var doRemoveRectangles = false,
+      rectanglesToRemove = [];
 
   $container.find('.rectangle').each(function(i, rectangle) {
     var $rectangle = $(rectangle),
         rectangleArea = $rectangle.height() * $rectangle.width();
 
     if (doRemoveRectangles) {
-      $rectangle.remove();
-      removeCount++; // XXX
-      hasRectanglesChanged = true;
+      rectanglesToRemove.push($rectangle);
     } else if (rectanglesArea > pageArea) {
       // all further discovered rectangles should be removed to keep the background minimal
       doRemoveRectangles = true;
-      $rectangle.remove();
-      removeCount++; // XXX
+
+      rectanglesToRemove.push($rectangle);
     } else {
       rectanglesArea += rectangleArea;
     }
   });
 
-  var $rectangles = [];
+  // remove rectangles in one fell swoop
+  if (rectanglesToRemove.length > 0) {
+    console.log('Removing ' + rectanglesToRemove.length + ' rectangles.');
+    if (isPackeryEnabled) {
+      $container.packery('remove', rectanglesToRemove);
+    } else {
+      rectanglesToRemove.remove();
+    }
+  }
 
+  var rectanglesToAdd = [];
+
+  // after scanning through all rectangles we still have more to add
   if (rectanglesArea < pageArea) {
     var colorClassHeatMap = getRandomHeatMap(RECTANGLE_COLOR_CLASS_WEIGHTS),
         i = 0;
@@ -80,31 +92,34 @@ function addRandomRectangles($container) {
       // cycle the heat map for a perfect distribution
       var colorCSSClass = colorClassHeatMap[i % colorClassHeatMap.length];
 
-      var rectangleHeightScalar = RECTANGLE_SIZE_SCALARS[Math.floor(Math.random() * RECTANGLE_SIZE_SCALARS.length)],
-          rectangleWidthScalar = RECTANGLE_SIZE_SCALARS[Math.floor(Math.random() * RECTANGLE_SIZE_SCALARS.length)];
+      var rectangleSideScalar = RECTANGLE_SIZE_SCALARS[Math.floor(Math.random() * RECTANGLE_SIZE_SCALARS.length)];
 
       var $rectangle = $('<div class="rectangle ' + colorCSSClass +
-              ' height' + rectangleHeightScalar +
-              ' width' + rectangleWidthScalar +
+              ' height' + rectangleSideScalar +
+              ' width' + rectangleSideScalar +
               '"><div class="grunge"></div></div>');
 
-      $rectangles.push($rectangle);
+      rectanglesToAdd.push($rectangle);
       i++;
 
-      rectanglesArea += ((RECTANGLE_WIDTH * rectangleHeightScalar)) * ((RECTANGLE_WIDTH * rectangleWidthScalar));
-      hasRectanglesChanged = true;
+      // this is the calculation we use for rectangle sizes - larger ones need to account for smaller ones with gutters
+      rectanglesArea += Math.pow((RECTANGLE_SIDE * rectangleSideScalar) + (RECTANGLE_GUTTER * (rectangleSideScalar - 1)), 2);
     }
   }
 
-  if ($rectangles.length > 0) {
-      $container.append($rectangles);
+  console.log('Filled area of '+rectanglesArea);
+  var diff = (rectanglesArea - pageArea);
+  console.log('Overfilled area by '+ diff + '(' + Math.sqrt(diff) + 'x' + Math.sqrt(diff) + ')');
+
+  // add rectangles in one fell swoop
+  if (rectanglesToAdd.length > 0) {
+    console.log('Adding ' + rectanglesToAdd.length + ' rectangles.');
+    if (isPackeryEnabled) {
+      $container.packery('addItems', rectanglesToAdd);
+    } else {
+      $container.append(rectanglesToAdd);
+    }
   }
-
-  addCount += $rectangles.length; // XXX
-  console.log('Added='+addCount); // XXX
-  console.log('Removed='+removeCount); // XXX
-
-  return hasRectanglesChanged;
 }
 
 function overridePackeryToCenter() {
@@ -162,7 +177,6 @@ function addNavigationAutoScrolling() {
           }, 200, 'swing');
 
         $section.addClass('focus');
-        // TODO should be a smoother way to make the scroll happen
       });
   });
 }
@@ -264,28 +278,27 @@ function renderMarkdown() {
   });
 }
 
-function setupBackground(loadPackery) {
+function setupBackground(isFirstLoad) {
   /* Build the body background, specifically the rectangles. */
-  var $background = $('.background');
+  var $background = $('.background'),
+      $backgroundCover = $('.background-cover');
 
-  $('.background-cover').height(0);
+  // make the cover have no effect on DOM rectangle calcuations
+  $backgroundCover.height(0);
 
-  var hasRectanglesAdded = addRandomRectangles($background);
+  fitRectangles($background, !isFirstLoad);
 
-  if (hasRectanglesAdded) {
-    if (loadPackery) {
-      $background.packery({
-        columnWidth: RECTANGLE_WIDTH,
-        itemSelector: '.rectangle',
-        gutter: RECTANGLE_GUTTER
-      });
-    } else {
-      $background.packery('reloadItems');
-    }
+  if (isFirstLoad) {
+    $background.packery({
+      columnWidth: RECTANGLE_SIDE,
+      itemSelector: '.rectangle',
+      gutter: RECTANGLE_GUTTER
+    });
+  } else {
+
   }
 
-  console.log('New height='+$(document).height());
-  $('.background-cover').height($(document).height());
+  $backgroundCover.height($background.height());
 }
 
 function setupNavigation() {
@@ -305,15 +318,26 @@ function setupContent() {
 $(function() {
   overridePackeryToCenter();
 
-  setupBackground(true);
+  var contentResetQueue = [];
+
   setupNavigation();
   setupContent();
+  setupBackground(true);
 
   // Need to reset for any responsiveness.
+  // In case it's a "drag resize" wait a few seconds to see if another event happens.
   $(window).resize(function() {
-    setupBackground(false);
-    setupNavigation();
-    setupContent();
+    var queueEntryTime = Date.now();
+    contentResetQueue.push(queueEntryTime);
+
+    setTimeout(function() {
+      if (Math.max.apply(null, contentResetQueue) == queueEntryTime) {
+        contentResetQueue = [];
+        setupNavigation();
+        setupContent();
+        setupBackground(false);
+      }
+    }, 200);
   });
 
 });

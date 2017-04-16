@@ -19,16 +19,19 @@ Here is a list of outstanding tasks that need to be completed for this project..
 
 * [ ] Top-down CSS review & cleanup, nix anything commented
 
-* [x] Navigation
+* [ ] Mobile, narrow-browser CSS
+
+* [ ] Navigation
   * [x] Waypoint to hide/show nav
   * [x] Bookmark nav movement
-  * [x] Go to Top link (kind of lame, maybe just make the first section identity?
-  * [x] Clicking on Identity goes to top of page, b/c Identity section is at the top
+  * [ ] Go to Top link (kind of lame, maybe just make the first section identity?
+  * [ ] Clicking on Identity goes to top of page, b/c Identity section is at the top
 
 * [ ] Section UIs
   * [ ] Identity
   * [x] Nav (all that's left is to make a position fixed
-  * [x] Social
+  * [ ] Quote
+  * [ ] Social
   * [ ] Blog (collection of thoughts, full breakdowns too)
 
 * [ ] Copyright blog material
@@ -37,5 +40,4 @@ Here is a list of outstanding tasks that need to be completed for this project..
 * [x] First and second banner don't align on their left side. Taking off `justify-content: center` fixes it,
         but breaks everything else.
 * [ ] Gallery preview should disappear when nav is engaged mid-preview. A mouse-out event may help.
-* [x] Laggy when scrolling due to making all images opaque.
-* [ ] Nav will bounce when same link is clicked twice.
+* [ ] Laggy when scrolling due to making all images opaque.
