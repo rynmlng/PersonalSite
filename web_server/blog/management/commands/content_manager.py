@@ -33,9 +33,9 @@ def get_post_info_from_file(file_location):
         file_json = json.load(json_file)
 
         try:
-            created_datetime = datetime.utcfromtimestamp(file_json['created_datetime'])
-        except ValueError:
-            raise ValueError('Timestamp {} in file is malformed'.format(file_json['created_datetime']))
+            created_datetime = datetime.fromtimestamp(file_json['created_datetime'])
+        except (TypeError, ValueError):
+            raise ValueError('Timestamp {} in {} is malformed'.format(file_json['created_datetime'], file_location))
 
         return BlogPost(
             content=file_json['content'],

@@ -7,15 +7,16 @@ from pymongo import MongoClient
 
 class MongoDatabase(object):
     DATABASE_NAME = None
+    CONNECTION_TIMEOUT = 10
 
     def __init__(self):
         if not self.DATABASE_NAME:
             raise ValueError('A database name must be provided at the class-level.')
 
-        # TODO should `client` or `database` be a cached_property and in case the connection times out it refreshes?
         client = MongoClient(
             settings.MONGO_DATABASE['blog']['HOST'],
-            settings.MONGO_DATABASE['blog']['PORT']
+            settings.MONGO_DATABASE['blog']['PORT'],
+            connectTimeoutMS=self.CONNECTION_TIMEOUT
         )
 
         self.database = getattr(client, self.DATABASE_NAME)
