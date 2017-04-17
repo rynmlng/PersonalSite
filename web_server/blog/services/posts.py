@@ -1,6 +1,8 @@
+import pymongo
+
 from django.utils.functional import cached_property
 
-from blog.models import BlogDatabase
+from blog.models import BlogDatabase, BlogPost
 
 
 class PostService(object):
@@ -15,9 +17,16 @@ class PostService(object):
             Optionally passing in fields restricts the objects' fields returned.
         """
         if fields:
-            return self.collection.find(projection=fields)
+            posts = self.collection.find(projection=fields)
         else:
-            return self.collection.find()
+            posts =  self.collection.find()
+
+        for post in posts.sort('created_datetime', -1):
+            yield BlogPost(
+                title=post['title'],
+                content=post['content'],
+                created_datetime=post['created_datetime']
+            )
 
     def save_post(self, post):
         """ Save a blog post to the database and return its inserted id. """

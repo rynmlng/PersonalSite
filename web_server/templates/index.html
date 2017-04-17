@@ -101,7 +101,10 @@
           {% for post in blog_posts %}
           <div class="post">
             <div class="date">{{ post.created_datetime.date }}</div>
-            <div class="content markdown">{{ post.content }}</div>
+            <p class="content markdown">
+{% if post.title %}# {{post.title}}{% endif %}
+{{post.content}}
+            </p>
           </div>
           {% endfor %}
         </div>

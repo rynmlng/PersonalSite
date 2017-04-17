@@ -51,6 +51,9 @@ class SimpleModel(object):
     def serialize(self):
         return {field: getattr(self, field) for field in self.fields}
 
+    def __str__(self):
+        return str(self.serialize())
+
     __metaclass__ = ABCMeta
 
 
