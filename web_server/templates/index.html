@@ -94,6 +94,8 @@
             </div>
           </div>
         </div>
+        {% if BLOG_ENABLED %}
+        <!-- This is currently feature-gated -->
         <div id="blog" class="banner content-box">
           <h1>Blog</h1>
           <h2><style="font-style: italic;">Software, startups, and how you should be trained to think about them.</style></h2>
@@ -108,6 +110,7 @@
           </div>
           {% endfor %}
         </div>
+        {% endif %}
       </div>
     </div>
   </body>
