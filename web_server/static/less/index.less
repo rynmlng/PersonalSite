@@ -273,15 +273,19 @@
     }
     #identity {
       .article {
+        align-items: center;
         display: flex;
         flex-wrap: nowrap;
         .text {
+          margin-right: 20px;
+          text-align: justify;
           width: 75%;
         }
         .photo {
           background: @lightGrey url(../img/sailing_looking_down.png) no-repeat;
           background-size: cover;
           border-radius: 6px;
+          min-height: 200px;
           width: 25%;
         }
       }
@@ -327,8 +331,8 @@
           &.linkedin {
             background-image: url('../img/social/linkedin.png');
           }
-          &.soundcloud {
-            background-image: url('../img/social/soundcloud.png');
+          &.spotify {
+            background-image: url('../img/social/spotify.png');
           }
           &.twitter {
             background-image: url('../img/social/twitter.png');

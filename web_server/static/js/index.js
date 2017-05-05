@@ -44,11 +44,8 @@ function fitRectangles($container, isPackeryEnabled) {
    *
    * If the packery lib has been instantiated use that, otherwise DOM insertion/deleton directly.
    */
-  console.log('\nPackery enabled='+isPackeryEnabled);
   var pageArea = $('.main').height() * $(window).width(),
       rectanglesArea = 0;
-
-  console.log('Need to fill area of '+pageArea);
 
   //pageArea += pageArea * (2 * RECTANGLE_GUTTER / RECTANGLE_SIDE); // account for gutters, etc.
 
@@ -73,7 +70,6 @@ function fitRectangles($container, isPackeryEnabled) {
 
   // remove rectangles in one fell swoop
   if (rectanglesToRemove.length > 0) {
-    console.log('Removing ' + rectanglesToRemove.length + ' rectangles.');
     if (isPackeryEnabled) {
       $container.packery('remove', rectanglesToRemove);
     } else {
@@ -107,13 +103,10 @@ function fitRectangles($container, isPackeryEnabled) {
     }
   }
 
-  console.log('Filled area of '+rectanglesArea);
   var diff = (rectanglesArea - pageArea);
-  console.log('Overfilled area by '+ diff + '(' + Math.sqrt(diff) + 'x' + Math.sqrt(diff) + ')');
 
   // add rectangles in one fell swoop
   if (rectanglesToAdd.length > 0) {
-    console.log('Adding ' + rectanglesToAdd.length + ' rectangles.');
     if (isPackeryEnabled) {
       $container.packery('addItems', rectanglesToAdd);
     } else {
