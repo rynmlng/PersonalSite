@@ -2,7 +2,7 @@
 
 <html>
   <head>
-    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet">
+    <!--<link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet">-->
     <link href="{% static 'css/main.css' %}" rel="stylesheet" type="text/css" />
     <link href="{% static 'css/index.css' %}" rel="stylesheet" type="text/css" />
     <link href="{% static 'css/markdown.css' %}" rel="stylesheet" type="text/css" />
@@ -24,29 +24,31 @@
         <div class="navigation">
           <div class="links static glowing-text-negative">
             <a data-section-selector="#header" class="link go-to-top"></a>
-            <a data-section-selector="#identity" class="link">identity</a>
-            <a data-section-selector="#social" class="link">social</a>
-            <a data-section-selector="#blog" class="link">blog</a>
+            <a data-section-selector="#life" class="link">Life</a>
+            <a data-section-selector="#identity" class="link">Identity</a>
+            <a data-section-selector="#social" class="link">Social</a>
+            {% if BLOG_ENABLED %}<a data-section-selector="#blog" class="link">Blog</a>{% endif %}
           </div>
           <div class="links floating glowing-text-negative">
             <a data-section-selector="#header" class="link go-to-top"></a>
-            <a data-section-selector="#identity" class="link">identity</a>
-            <a data-section-selector="#social" class="link">social</a>
-            <a data-section-selector="#blog" class="link">blog</a>
+            <a data-section-selector="#life" class="link">Life</a>
+            <a data-section-selector="#identity" class="link">Identity</a>
+            <a data-section-selector="#social" class="link">Social</a>
+            {% if BLOG_ENABLED %}<a data-section-selector="#blog" class="link">Blog</a>{% endif %}
           </div>
         </div>
       </div>
       <div id="content">
         <div class="banner content-box">
-          <p><span class="big-quote">"</span><strong>Software is not real.</strong> When you pry open a computer lines of code do not spill out onto the floor as a reel of film. When we realize that our <strong>love</strong> of software isn't writing lines of code, but <strong>building</strong>, the limitlessness of what can be created comes into the foreground."</p>
+          <p class="quote"><strong>Software is not real.</strong> When you pry open a computer lines of code do not spill out onto the floor as a reel of film. When we realize that our <strong>love</strong> of software is not writing lines of code, but <strong>building</strong>, the limitlessness of what can be created comes into the foreground.</p>
         </div>
         <!--
         <div class="banner content-box">
           <p>How do I code? Custom vim and tmux profiles; dot-files; note my keystrokes and repetitions and build bash functions to streamline; As a Pragmatic Programmer, I "learn one editor and learn it well" and that's vim for me. I don't use editors with suggestions or auto-completes because I want to get more of the code base in my head so I can think even while I'm not at my computer.</p>
         </div>
         -->
-        <div id="identity" class="banner content-box">
-          <h1>Identity</h1>
+        <div id="life" class="banner content-box">
+          <h1>Life</h1>
           <hr class="separator"/>
           <div class="gallery">
             <div class="photo" style="background-image: url('/static/img/gallery/new_office_view.jpg')"></div>
@@ -64,9 +66,16 @@
             <div class="preview-photo"></div>
           </div>
         </div>
-        <div class="banner content-box">
-          <p>Time spent for me is building things with my hands. Primarily I spend my workdays crafting scalable, robust, and beautiful web applications. This comes with a consideration for the vision of the product, needs of Engineering, and what it will take for my company to succeed with their mission.
-          My balance in life comes with time vested in home projects, woodworking, brewing beer, and studying number theory &amp; psychophysics. These are all subjects I've gained recent interest in and devote a vast majority of my free time into. Learning new arts &amp; trades helps me interpret philosophies and strategies in entreprenurism and software development methodologies to think differently.</p>
+        <div id="identity" class="banner content-box">
+          <h1>Identity</h1>
+          <hr class="separator"/>
+          <div class="article">
+            <div class="text">
+              <p>Time spent for me is building things with my hands. Primarily I spend my workdays crafting scalable, robust, and beautiful web applications. This comes with a consideration for the vision of the product, needs of Engineering, and what it will take for my company to succeed with their mission.</p>
+              <p>My balance in life comes with time vested in athletics, brewing beer, travel, woodworking, and studying number theory &amp; psychophysics. These are all subjects I've gained recent interest in and devote a vast majority of my free time into. Learning new arts &amp; trades helps me interpret philosophies and strategies in entreprenurism and software development methodologies to think differently.</p>
+            </div>
+            <div class="photo"></div>
+          </div>
         </div>
         <div id="social" class="banner content-box">
           <h1>Social</h1>

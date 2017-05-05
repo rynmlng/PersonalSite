@@ -6,8 +6,9 @@
 @black: #000;
 @blue: #2a0c95;
 @charcoal: #190a0f;
-@darkGrey: #333;
+@darkGrey: #222;
 @eggshellWhite: #e6dedc;
+@lightGrey: #bbb;
 @red: #d12b1b;
 @white: #fff;
 
@@ -16,15 +17,23 @@
   src: url('../../static/fonts/Lato-Regular.ttf') format('truetype');
 }
 
+.font-sans-serif() {
+  font-family: Lato, arial;
+}
+
+.font-serif() {
+  font-family: georgia, 'Times New Roman', times, serif;
+}
+
 ////////////
 // GLOBALS
 ////////////
 
 * {
   border: 0;
-  font-family: Lato, arial;
   margin: 0;
   padding: 0;
+  .font-serif();
 }
 
 a {
@@ -37,7 +46,6 @@ body {
 
 p {
   cursor: normal;
-  text-indent: 25px;
 }
 
 * {

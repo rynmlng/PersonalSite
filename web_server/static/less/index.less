@@ -113,18 +113,20 @@
 
   .banner {
     display: inline-block;
+    font-size: 17px;
     margin-top: 20px;
     width: 90%;
   }
 
   .content-box {
-    background-color: rgba(255, 255, 255, 0.75);
+    background-color: rgba(255, 255, 255, 0.85);
     border-radius: 6px;
-    padding: 15px;
+    padding: 15px 15px 20px 15px;
     text-align: left;
     & > h1 {
+      color: @darkGrey;
       line-height: 32px;
-      .embossed-light();
+      .font-sans-serif();
     }
     .separator {
       background: rgba(102, 102, 102, 0.5);
@@ -136,12 +138,16 @@
 
       border-radius: 13px;
       height: 4px;
+      margin-bottom: 10px;
     }
   }
 
   #header {
     display: flex;
     justify-content: space-between;
+    * { 
+      .font-sans-serif();
+    }
     .summary {
       font-size: 32px;
       padding: 10px 20px;
@@ -186,7 +192,7 @@
           top: 0px;
           .z-index-higher();
           .go-to-top {
-            background: @white url(../img/arrowup_circle-512.png) no-repeat center;
+            background: @white url(../img/icons/arrowup_circle-512.png) no-repeat center;
             background-size: 28px;
             border-radius: 13px;
             box-shadow: 0px 0px 5px @black;
@@ -204,7 +210,33 @@
     }
   }
   #content {
-    #identity {
+    color: @darkGrey;
+    h1 {
+      .font-sans-serif();
+    }
+    p {
+      border-left: 5px solid @lightGrey;
+      padding: 10px;
+      text-indent: 25px;
+      &.quote {
+        font-size: 19px;
+        quotes: "\201C""\201D""\2018""\2019";
+        text-align: center;
+        text-indent: 0;
+        &:before {
+          color: @lightGrey;
+          content: "\201C";
+          font-size: 45px;
+          line-height: 5px;
+          margin-right: 5px;
+          vertical-align: -12px;
+        }
+        &:after {
+          content: "\201D";
+        }
+      }
+    }
+    #life {
       .gallery {
         display: flex;
         flex-wrap: wrap;
@@ -239,6 +271,21 @@
         }
       }
     }
+    #identity {
+      .article {
+        display: flex;
+        flex-wrap: nowrap;
+        .text {
+          width: 75%;
+        }
+        .photo {
+          background: @lightGrey url(../img/sailing_looking_down.png) no-repeat;
+          background-size: cover;
+          border-radius: 6px;
+          width: 25%;
+        }
+      }
+    }
     #social {
       .networks {
         display: flex;
@@ -261,6 +308,7 @@
             position: absolute;
             text-align: center;
             width: 100%;
+            .font-sans-serif();
           }
           .link {
             display: inline-block;
