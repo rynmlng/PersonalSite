@@ -1,4 +1,5 @@
 *.pyc
 *.swp
 web_server/main/local_settings.py
+logs/
 venv/
