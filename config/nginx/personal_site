@@ -3,7 +3,7 @@ upstream personal_site {
   # to return a good HTTP response (in case the Unicorn master nukes a
   # single worker for timing out).
 
-  server unix:/apps/personal_site/run/gunicorn.sock fail_timeout=0;
+  server unix:/apps/PersonalSite/run/gunicorn.sock fail_timeout=0;
 }
 
 server {
@@ -13,13 +13,13 @@ server {
 
     client_max_body_size 4G;
 
-    access_log /apps/personal_site/logs/nginx-access.log;
-    error_log /apps/personal_site/logs/nginx-error.log;
- 
+    access_log /apps/PersonalSite/logs/nginx-access.log;
+    error_log /apps/PersonalSite/logs/nginx-error.log;
+
     location /static/ {
-        alias   /apps/personal_site/web_server/static/;
+        alias   /apps/PersonalSite/web_server/static/;
     }
-    
+
     location / {
         # an HTTP header important enough to have its own Wikipedia entry:
         #   http://en.wikipedia.org/wiki/X-Forwarded-For
@@ -55,6 +55,6 @@ server {
     # Error pages
     error_page 500 502 503 504 /500.html;
     location = /500.html {
-        root /apps/personal_site/web_server/templates/;
+        root /apps/PersonalSite/web_server/templates/;
     }
 }

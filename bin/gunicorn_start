@@ -1,8 +1,8 @@
 #!/bin/bash
 
 NAME="personal_site"
-DJANGODIR=/apps/personal_site/web_server
-SOCKFILE=/apps/personal_site/run/gunicorn.sock
+DJANGODIR=/apps/PersonalSite/web_server
+SOCKFILE=/apps/PersonalSite/run/gunicorn.sock
 USER=root
 GROUP=root
 NUM_WORKERS=3
