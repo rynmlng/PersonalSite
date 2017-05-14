@@ -1,3 +1,11 @@
+# Setup
+
+
+## Full Stack Tutorial
+http://michal.karzynski.pl/blog/2013/06/09/django-nginx-gunicorn-virtualenv-supervisor/
+
+
+## Technologies
 * MongoDB
   * https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
 

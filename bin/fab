@@ -1,0 +1,7 @@
+#!/bin/bash
+
+fabfile='config/fabric/fabfile.py'
+
+if [ -f $fabfile ]; then
+  command fab -f $fabfile $@
+fi
