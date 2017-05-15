@@ -1,5 +1,4 @@
 # PersonalSite
-
 This repository is a collection of all the code and environment setup required to run a personal site catered to a specific individual.
 
 
@@ -23,7 +22,8 @@ To encourage unified coding style and system file structure here are some guidel
 
 ## Future Ideas
 * Add flip effect to the main web page
-* Leave all content on 1 web page, be dynamic, load lazily
+* Device-related fingerprint authentication
+* Cross-platform music-sharing section
 
 
 ## Links
