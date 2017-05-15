@@ -8,6 +8,10 @@ var RECTANGLE_COLOR_CLASS_WEIGHTS = {
 };
 
 var BACKGROUND_COVER_CLASS = '<div class="background-cover"></div>';
+
+var IMAGE_GALLERY_ROOT = '/static/img/gallery/'
+var IMAGE_GALLERY_THUMBNAIL_ROOT = '/static/img/gallery/thumbnails/'
+
 var RECTANGLE_GUTTER = 10;
 var RECTANGLE_SIDE = 100;
 var RECTANGLE_SIZE_SCALARS = [1, 2, 3];
@@ -206,15 +210,25 @@ function addNavigationWaypoints() {
 
 }
 
+function setupGalleryImages() {
+  /* Gather the data attributes of an image and display their thumbnails. */
+  $('.gallery .photo').each(function() {
+    var thumbnailImageFilename = IMAGE_GALLERY_THUMBNAIL_ROOT + $(this).data('image-name');
+    $(this).css('backgroundImage', 'url(' + thumbnailImageFilename + ')');
+  });
+}
+
 function addGalleryPreview() {
   /* Add look-and-feel of the gallery including hovering and preview movement
-   * based on the mouse.
+   *   based on the mouse.
    */
   var $gallery = $('.gallery'),
       $previewPhoto = $gallery.children('.preview-photo');
 
   $gallery.children('.photo').hover(function() {
-    $previewPhoto.css('backgroundImage', $(this).css('backgroundImage'));
+    var largeImageFilename = IMAGE_GALLERY_ROOT + $(this).data('image-name');
+
+    $previewPhoto.css('backgroundImage', 'url(' + largeImageFilename + ')');
     $previewPhoto.show();
 
     var photoHeight = $(this).outerHeight(),
@@ -227,6 +241,7 @@ function addGalleryPreview() {
         photoPositionRight = photoPositionLeft + photoWidth;
 
     $gallery.mousemove(function(eventData) {
+      // Once we hover over the image if the mouse moves left, right, above, or below the image hide the preview
       if ((eventData.pageX < photoPositionLeft) ||
           (eventData.pageX > photoPositionRight) ||
           (eventData.pageY < photoPositionTop) ||
@@ -241,8 +256,6 @@ function addGalleryPreview() {
         $previewPhoto.css('backgroundPositionY', yOffsetPercent);
       }
     });
-
-    // Once we hover over the image if the mouse moves left, right, above, or below the image hide the preview
   });
 }
 
@@ -310,6 +323,7 @@ function setupNavigation() {
 }
 
 function setupContent() {
+  setupGalleryImages();
   addGalleryPreview();
   addSocialLabelPopUps();
   renderMarkdown();

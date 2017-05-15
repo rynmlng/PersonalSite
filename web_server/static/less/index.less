@@ -44,7 +44,7 @@
     height: @baseRectangleHeight;
     width: @baseRectangleWidth;
     .grunge {
-      background-image: url(../img/grunge_filter.png);
+      background-image: url(/static/img/grunge_filter.png);
       height: 100%;
       opacity: 0.7;
       width: 100%;
@@ -113,7 +113,7 @@
 
   .banner {
     display: inline-block;
-    font-size: 17px;
+    font-size: 16px;
     margin-top: 20px;
     width: 90%;
   }
@@ -192,7 +192,7 @@
           top: 0px;
           .z-index-higher();
           .go-to-top {
-            background: @white url(../img/icons/arrowup_circle-512.png) no-repeat center;
+            background: @white url(/static/img/icons/arrowup_circle-512.png) no-repeat center;
             background-size: 28px;
             border-radius: 13px;
             box-shadow: 0px 0px 5px @black;
@@ -219,7 +219,7 @@
       padding: 10px;
       text-indent: 25px;
       &.quote {
-        font-size: 19px;
+        font-size: 16px;
         quotes: "\201C""\201D""\2018""\2019";
         text-align: center;
         text-indent: 0;
@@ -273,16 +273,16 @@
     }
     #identity {
       .article {
-        align-items: center;
+        align-items: flex-start;
         display: flex;
         flex-wrap: nowrap;
         .text {
-          margin-right: 20px;
+          margin: 10px 20px 0px 0px;
           text-align: justify;
           width: 75%;
         }
         .photo {
-          background: @lightGrey url(../img/sailing_looking_down.png) no-repeat;
+          background: @lightGrey url(/static/img/sailing_looking_down.jpg) no-repeat;
           background-size: cover;
           border-radius: 6px;
           min-height: 200px;
@@ -322,20 +322,20 @@
             z-index: 100;
           }
           &.angellist {
-            background-image: url('../img/social/angellist.png');
+            background-image: url('/static/img/social/angellist.png');
           }
           &.github {
             background-color: @black;
-            background-image: url('../img/social/github.png');
+            background-image: url('/static/img/social/github.png');
           }
           &.linkedin {
-            background-image: url('../img/social/linkedin.png');
+            background-image: url('/static/img/social/linkedin.png');
           }
           &.spotify {
-            background-image: url('../img/social/spotify.png');
+            background-image: url('/static/img/social/spotify.png');
           }
           &.twitter {
-            background-image: url('../img/social/twitter.png');
+            background-image: url('/static/img/social/twitter.png');
           }
         }
       }
