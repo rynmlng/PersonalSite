@@ -4,7 +4,7 @@ env.hosts = ('ryanmiling.com',)
 env.forward_agent = True
 env.user = 'ryan'
 
-site_location = '/apps/personal_site'
+site_location = '/apps/PersonalSite'
 
 def deploy():
     """ Deploy the latest code in git's master branch to production. """

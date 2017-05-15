@@ -1,5 +1,7 @@
 *.pyc
 *.swp
-web_server/main/local_settings.py
 logs/*
+run/gunicorn.sock
 venv/*
+web_server/main/local_settings.py
+web_server/sqlite3

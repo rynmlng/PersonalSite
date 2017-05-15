@@ -9,6 +9,10 @@ CONTENT_DIR = os.path.join(BASE_DIR, '../content')
 ALLOWED_HOSTS = []
 
 
+# Application-specific
+BLOG_ENABLED = True
+
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -58,7 +62,7 @@ WSGI_APPLICATION = 'main.wsgi.application'
 
 CACHES = {
     'default': {
-        'BACKEND': 'redis_cache.Rediscache',
+        'BACKEND': 'redis_cache.RedisCache',
         'LOCATION': '/var/run/redis/redis.sock'
     }
 }

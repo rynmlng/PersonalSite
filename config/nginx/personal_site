@@ -1,4 +1,4 @@
-upstream personal_site {
+upstream PersonalSite {
   # fail_timeout=0 means we always retry an upstream even if it failed
   # to return a good HTTP response (in case the Unicorn master nukes a
   # single worker for timing out).
@@ -47,7 +47,7 @@ server {
         # Try to serve static files from nginx, no point in making an
         # *application* server like Unicorn/Rainbows! serve static files.
         if (!-f $request_filename) {
-            proxy_pass http://personal_site;
+            proxy_pass http://PersonalSite;
             break;
         }
     }
